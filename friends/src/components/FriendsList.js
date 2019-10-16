@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import Friend from './Friend';
 
-const FriendsList = () => {
+const FriendsList = props => {
   const [ friends, setFriends ] = useState([]);
 
   useEffect(() => {
@@ -24,10 +24,14 @@ const FriendsList = () => {
       })
   }
 
+  const handleClick = () => {
+    props.history.push('./add');
+  }
+
   return (
     <>
       <h1>List of Friends</h1>
-      <button>Add Friend</button>
+      <button onClick={handleClick}>Add Friend</button>
       <div>
         {friends.map(friend => {
           return (
