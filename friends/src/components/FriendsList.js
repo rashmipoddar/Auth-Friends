@@ -33,6 +33,19 @@ const FriendsList = props => {
     props.history.push('./add');
   }
 
+  const handleDelete = friend => {
+    axiosWithAuth()
+    .delete(`/api/friends/${friend.id}`)
+      .then(response => {
+        console.log(response);
+        setFriends(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
+
+
   return (
     <>
       <h1>List of Friends</h1>
@@ -42,7 +55,6 @@ const FriendsList = props => {
           color="#00BFFF"
           height={100}
           width={100}
-          timeout={3000} 
         />
         : ''
       }
@@ -50,7 +62,7 @@ const FriendsList = props => {
       <div>
         {friends.map(friend => {
           return (
-            <Friend key={friend.id} friend={friend} />
+            <Friend key={friend.id} friend={friend} handleDelete={handleDelete} />
           ) 
         })}
       </div>
