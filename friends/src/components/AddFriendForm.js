@@ -37,7 +37,7 @@ const AddFriendForm = props => {
       />
       <input 
         name='age'
-        type='text'
+        type='number'
         placeholder='Age'
         value={age}
         onChange={event => handleAge(event.target.value)}
